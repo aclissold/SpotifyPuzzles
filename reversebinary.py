@@ -1,31 +1,31 @@
 # reversebinary.py
 
-decimalIn = 0
-decimalOut = 0
-binaryIn = ''
-binaryOut = ''
-
 def main():
-    read_input()
-    to_binary(decimalIn)
-    reverse_binary(binaryIn)
-    to_decimal(binaryOut)
-    display_results(binaryOut)
+    decimal_in      = read_input()
+    reversed_binary = to_reversed_binary(decimal_in)
+    decimal_out     = to_decimal(reversed_binary)
+
+    display_results(decimal_out)
 
 def read_input():
-    global decimalIn
-    decimalIn = raw_input()
+    '''Return a string representation of an integer value'''
+    decimal_in = raw_input()
+    return decimal_in
 
-def to_binary(decimal):
+def to_reversed_binary(decimal_in):
+    '''Convert a decimal value to its reversed binary (as strings)'''
+    value = int(decimal_in)
+    reversed_binary = ''
+    while value != 0:
+        remainder = value % 2
+        value /= 2
+        reversed_binary += str(remainder)
+    return reversed_binary
+
+def to_decimal(reversed_binary):
     pass
 
-def reverse_binary(binaryIn):
-    pass
-
-def to_decimal(binary):
-    pass
-
-def display_results(binaryOut):
+def display_results(decimal_out):
     pass
 
 if __name__ == '__main__':
