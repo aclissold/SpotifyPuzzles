@@ -17,7 +17,7 @@
 import unittest
 import reversebinary
 
-class Test(unittest.TestCase):
+class TestToReversedBinary(unittest.TestCase):
 
     known_values = (
             ('1', '1'),
@@ -48,7 +48,7 @@ class Test(unittest.TestCase):
             self.assertEqual(found, expected)
 
     def test_to_reversed_binary_out_of_range(self):
-        for value in ('0', '1000000001'):
+        for value in ('-1', '0', '1000000001'):
             self.assertRaises(reversebinary.OutOfRangeError,
                     reversebinary.to_reversed_binary, value)
 
