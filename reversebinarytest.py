@@ -47,6 +47,11 @@ class Test(unittest.TestCase):
             found = reversebinary.to_reversed_binary(decimal)
             self.assertEqual(found, expected)
 
+    def test_to_reversed_binary_out_of_range(self):
+        for value in ('0', '1000000001'):
+            self.assertRaises(reversebinary.OutOfRangeError,
+                    reversebinary.to_reversed_binary, value)
+
     # def test_reverse_binary(self):
     #     pass
     #
