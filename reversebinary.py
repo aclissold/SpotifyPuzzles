@@ -15,6 +15,8 @@ def read_input():
 def to_reversed_binary(decimal_in):
     '''Convert a decimal value to its reversed binary (as strings)'''
     value = int(decimal_in)
+    if not 1 <= value <= 1000000000:
+        raise OutOfRangeError
     reversed_binary = ''
     while value != 0:
         remainder = value % 2
@@ -27,6 +29,8 @@ def to_decimal(reversed_binary):
 
 def display_results(decimal_out):
     pass
+
+class OutOfRangeError(ValueError): pass
 
 if __name__ == '__main__':
     main()
