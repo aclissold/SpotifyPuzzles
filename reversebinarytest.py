@@ -58,6 +58,7 @@ class TestToReversedBinary(unittest.TestCase):
 
 class TestToDecimal(unittest.TestCase):
     def test_to_decimal_known_values(self):
+        '''to_decimal should return the decimal version of any binary value'''
         for known_decimal, binary in known_values:
             found_decimal = reversebinary.to_decimal(binary)
             self.assertEqual(known_decimal, found_decimal)
