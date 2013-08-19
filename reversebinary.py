@@ -1,7 +1,5 @@
 # reversebinary.py
 
-import sys
-
 def main():
     decimal_in      = read_input()
     reversed_binary = to_reversed_binary(decimal_in)
@@ -20,7 +18,7 @@ def to_reversed_binary(decimal_in):
         value = int(decimal_in)
     except ValueError:
         print 'You must enter an integer N where 1 <= N <= 1000000000.'
-        sys.exit(0)
+        exit(0)
     if not 1 <= value <= 1000000000:
         raise OutOfRangeError
     reversed_binary = ''
@@ -31,10 +29,14 @@ def to_reversed_binary(decimal_in):
     return reversed_binary
 
 def to_decimal(reversed_binary):
-    pass
+    decimal = 0
+    for i in range(0, len(reversed_binary)):
+        if reversed_binary[-i-1] == '1':
+            decimal += 2 ** i
+    return str(decimal) 
 
 def display_results(decimal_out):
-    pass
+    print decimal_out
 
 class OutOfRangeError(ValueError): pass
 
