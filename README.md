@@ -1,4 +1,4 @@
 SpotifyPuzzles
 ==============
 
-My solutions to the puzzles found [here](https://www.spotify.com/us/jobs/tech/).
+My solutions to the puzzles found [here](http://labs.spotify.com/puzzles/).
