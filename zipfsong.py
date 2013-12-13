@@ -1,30 +1,23 @@
 def main():
-    # Read n and m
-    data = raw_input()
-    n, m = process(data)
-    i = 0
-    while i < range(n):
+    data = raw_input().split(' ')
+    n, m = int(data[0]), int(data[1])
+    f, s, z, q = [], [], [], []
+    for i in xrange(n):
+        data = raw_input().split(' ')
+        f.append(int(data[0]))
+        s.append(data[1])
 
+    total_listens = float(sum(f)) # a float for use in division equations
+    zipf_constant = float(total_listens /
+        sum([total_listens/i for i in xrange(1, n+1)]))
 
-def process(data):
-    '''Validate and parse the input read from stdin'''
-    data = data.strip()
-    data = data.split()
-    if len(data) != 2:
-        print 'Error: you must enter exactly two values.'
-        exit(1)
-    try:
-        n, m = int(data[0]), int(data[1])
-    except ValueError:
-        print 'Error: values must be integers'
-        exit(1)
-    if not 1 <= n <= 50000:
-        print 'Your first value must be within 1-50000 (inclusive)'
-        exit(1)
-    if not 1 <= m <= n:
-        print 'Your second value must be within 1-(first value) (inclusive)'
-        exit(1)
-    return n, m
+    for i in xrange(1, n+1):
+        z.append(zipf_constant * (total_listens/i))
+        q.append(f[i-1] / z[i-1])
+
+    for i in xrange(n):
+        print 'Song', s[i], 'had', f[i], 'listens, but Zipf predicted', z[i], \
+            'yielding a quality of', q[i]
 
 if __name__ == '__main__':
     main()
