@@ -19,11 +19,13 @@ def main():
 
 def run_testcase(c, d, votes):
 
-    yes, no = {}, {}
+    yes, no, score = {}, {}, {}
     for i in xrange(1, c+1): yes['C'+str(i)] = 0
     for i in xrange(1, c+1): no['C'+str(i)] = 0
     for i in xrange(1, d+1): yes['D'+str(i)] = 0
     for i in xrange(1, d+1): no['D'+str(i)] = 0
+    for i in xrange(1, c+1): score['C'+str(i)] = 0
+    for i in xrange(1, d+1): score['D'+str(i)] = 0
     best = [0]
 
     for i in xrange(1, len(votes)+1):
@@ -31,8 +33,17 @@ def run_testcase(c, d, votes):
 
         yes[keep] += 1
         no[remove] += 1
+        score[keep] += 1
+        score[remove] -= 1
 
+    print 'after determing how many of which:', yes, no
+    print 'scores:', score
+
+    for i in xrange(1, len(votes)+1):
+        keep, remove = votes[i-1].split(' ')
         if yes[keep] > no[keep]:
+            score
+            print 'keeping', keep
             best.append(best[i-1] + 1)
         else:
             best.append(best[i-1])
