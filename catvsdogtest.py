@@ -1,4 +1,4 @@
-import catvsdog
+import catvsdoggraph
 import catvsdogbrute
 
 from random import randint
@@ -20,7 +20,7 @@ def main():
             else:
                 votes.append('D' + str(dog) + ' C' + str(cat))
         brute_answer = catvsdogbrute.run_testcase(c, d, votes)
-        smart_answer = catvsdog.run_testcase(c, d, votes)
+        smart_answer = catvsdoggraph.run_testcase(c, d, votes)
         if brute_answer == smart_answer:
             total += 1
         else:
@@ -62,7 +62,7 @@ def main():
 #        print vote
 #    print
 #    brute_answer = catvsdogbrute.run_testcase(c, d, votes)
-#    smart_answer = catvsdog.run_testcase(c, d, votes)
+#    smart_answer = catvsdoggraph.run_testcase(c, d, votes)
 #    print 'brute-->', brute_answer, '?=', smart_answer, '<-- real'
 
 if __name__ == '__main__':
