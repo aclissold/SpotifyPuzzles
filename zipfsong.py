@@ -1,6 +1,7 @@
 # Zipf's Song
 
 from operator import itemgetter
+from fractions import Fraction
 
 def main():
 
@@ -14,7 +15,7 @@ def main():
         s.append(data[1])
 
     # total_listens is used in computing the Zipf constant and z[i]'s
-    total_listens = float(sum(f)) # a float to avoid integer division
+    total_listens = sum(f)
 
     if total_listens == 0:
         # Nothing more to do
@@ -24,13 +25,13 @@ def main():
 
     # To compute z[i], scale (total_listens/i) by this value so that
     # the sum of all z[i]'s will add up to the total_listens.
-    zipf_constant = float(total_listens /
-        sum([total_listens/i for i in xrange(1, n+1)]))
+    zipf_constant = (total_listens /
+        sum(Fraction(total_listens, i) for i in xrange(1, n+1)))
 
     # Compute each zi and qi
     z, q = [], []
     for i in xrange(1, n+1):
-        z.append(zipf_constant * (total_listens/i))
+        z.append(zipf_constant * Fraction(total_listens, i))
         q.append(f[i-1] / z[i-1])
 
     # Construct the answer 'a' as (quality, songname) tuples to sort by quality
