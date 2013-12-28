@@ -1,6 +1,6 @@
 # Zipf's Song
 
-import Queue
+from operator import itemgetter
 
 def main():
 
@@ -16,6 +16,12 @@ def main():
     # total_listens is used in computing the Zipf constant and z[i]'s
     total_listens = float(sum(f)) # a float to avoid integer division
 
+    if total_listens == 0:
+        # Nothing more to do
+        for i in xrange(m):
+            print s[i]
+        return
+
     # To compute z[i], scale (total_listens/i) by this value so that
     # the sum of all z[i]'s will add up to the total_listens.
     zipf_constant = float(total_listens /
@@ -27,15 +33,17 @@ def main():
         z.append(zipf_constant * (total_listens/i))
         q.append(f[i-1] / z[i-1])
 
-    # Construct the answer as a priority queue with quality as its keys
-    queue = Queue.PriorityQueue()
+    # Construct the answer 'a' as (quality, songname) tuples to sort by quality
+    a = []
     for i in xrange(n):
-        # Use negative qualities since get() gets the value with the lowest key
-        queue.put((-1*q[i], s[i]))
+        a.append((q[i], s[i]))
+
+    # Stable-sort the answer so the first songs on the album remain as such
+    a = sorted(a, key=itemgetter(0), reverse=True)
 
     # Print the results
     for i in xrange(m):
-        print queue.get()[1] # get()[0] would return the quality
+        print a[i][1]
 
 if __name__ == '__main__':
     main()
